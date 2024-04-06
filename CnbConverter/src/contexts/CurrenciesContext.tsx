@@ -1,16 +1,28 @@
 import {createContext, useEffect, useState} from "react";
 
+type Currency = {
+    country_label: string;
+    curr_label: string;
+    unit: number;
+    code: string;
+    rate: number;
+}
+
 type CurrenciesContextType = {
     currencyName: string;
     setCurrencyName: (currencyName: string) => void;
-    currenciesList: string[];
+    currenciesList: Currency[];
+    selectedCurrency: Currency | null;
+    setSelectedCurrency: (currency: Currency) => void;
 };
 
 export const CurrenciesContext = createContext<CurrenciesContextType>(
     {
         currencyName: "",
         setCurrencyName: () => {},
-        currenciesList: []
+        currenciesList: [],
+        selectedCurrency: null,
+        setSelectedCurrency: () => {}
     });
 
 type Props = {
@@ -21,7 +33,9 @@ type Props = {
 const CurrenciesContextProvider: React.FC<Props> = ({children} : Props) =>
 {
     const [currencyName, setCurrencyName] = useState<string>("CZK");
-    const [currenciesList, setCurrenciesList] = useState<string[]>([]);
+    const [currenciesList, setCurrenciesList] = useState<Currency[]>([]);
+
+    const [selectedCurrency, setSelectedCurrency] = useState<Currency | null>(null);
 
     useEffect( () => {
 
@@ -32,13 +46,11 @@ const CurrenciesContextProvider: React.FC<Props> = ({children} : Props) =>
             {
                 const data = await response.json();
 
-                const newCurrenciesList: string[] = [];
+                const newCurrenciesList: Currency[] = [];
 
-                data.data.forEach(({code}: any) => {
-                    newCurrenciesList.push(code);
+                data.data.forEach((currency: Currency) => {
+                    newCurrenciesList.push(currency);
                 });
-
-                setCurrencyName(newCurrenciesList[0]);
 
                 setCurrenciesList(newCurrenciesList);
             }
@@ -51,7 +63,9 @@ const CurrenciesContextProvider: React.FC<Props> = ({children} : Props) =>
     const contextValue: CurrenciesContextType = {
         currencyName,
         setCurrencyName,
-        currenciesList
+        currenciesList,
+        selectedCurrency,
+        setSelectedCurrency
     };
 
     return (

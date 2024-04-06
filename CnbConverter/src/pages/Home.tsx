@@ -2,6 +2,7 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/rea
 import './Home.css';
 import CurrenciesCard from "../components/CurrenciesCard";
 import Settings from "../components/Settings";
+import SelectCurrencyCard from "../components/SelectCurrencyCard";
 
 const Home: React.FC = () => {
   return (
@@ -12,8 +13,9 @@ const Home: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <CurrenciesCard/>
-          <Settings/>
+          <CurrenciesCard/>
+          <SelectCurrencyCard/>
+        <Settings/>
       </IonContent>
     </IonPage>
   );
