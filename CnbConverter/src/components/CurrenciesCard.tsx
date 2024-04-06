@@ -4,7 +4,7 @@ import {CurrenciesContext} from "../contexts/CurrenciesContext";
 
 const CurrenciesCard: React.FC = ()  => {
 
-    const {currencyName} = useContext(CurrenciesContext);
+    const {selectedCurrency} = useContext(CurrenciesContext);
 
     return (
         <IonCard>
@@ -23,7 +23,8 @@ const CurrenciesCard: React.FC = ()  => {
                 <IonInput
                     fill="outline"
                     type={"number"}
-                    label={currencyName}/>
+                    disabled={true}
+                    label={selectedCurrency?.code ?? "CUR"}/>
             </IonCardContent>
         </IonCard>
     );

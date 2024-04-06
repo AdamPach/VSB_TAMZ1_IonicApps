@@ -9,7 +9,6 @@ type Currency = {
 }
 
 type CurrenciesContextType = {
-    currencyName: string;
     setCurrencyName: (currencyName: string) => void;
     currenciesList: Currency[];
     selectedCurrency: Currency | null;
@@ -18,7 +17,6 @@ type CurrenciesContextType = {
 
 export const CurrenciesContext = createContext<CurrenciesContextType>(
     {
-        currencyName: "",
         setCurrencyName: () => {},
         currenciesList: [],
         selectedCurrency: null,
@@ -61,7 +59,6 @@ const CurrenciesContextProvider: React.FC<Props> = ({children} : Props) =>
     }, [currencyName]);
 
     const contextValue: CurrenciesContextType = {
-        currencyName,
         setCurrencyName,
         currenciesList,
         selectedCurrency,
