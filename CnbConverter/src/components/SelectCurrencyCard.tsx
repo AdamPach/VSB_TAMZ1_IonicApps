@@ -13,7 +13,7 @@ import {IonSelectCustomEvent} from "@ionic/core/dist/types/components";
 
 const SelectCurrencyCard: React.FC = () => {
 
-    const {currenciesList, setSelectedCurrency} = useContext(CurrenciesContext);
+    const {currenciesList, selectedCurrency, setSelectedCurrency} = useContext(CurrenciesContext);
 
     const onSelectChange = (event: IonSelectCustomEvent<SelectChangeEventDetail>) => {
         setSelectedCurrency(event.detail.value);
@@ -28,6 +28,7 @@ const SelectCurrencyCard: React.FC = () => {
             </IonCardHeader>
             <IonCardContent>
                 <IonSelect
+                    value={selectedCurrency}
                     onIonChange={onSelectChange}
                     label={"Currency"}>
                     {currenciesList.map((currency, index) => (

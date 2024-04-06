@@ -10,8 +10,10 @@ const CurrenciesCard: React.FC = ()  => {
     const {selectedCurrency} = useContext(CurrenciesContext);
 
     useEffect(() => {
-        inputCurrency.current!.value = "";
-        outputCurrency.current!.value = "";
+        if(selectedCurrency !== null)
+        {
+            outputCurrency.current!.value = Number(inputCurrency.current!.value) / selectedCurrency!.rate * selectedCurrency!.unit;
+        }
     }, [selectedCurrency]);
 
     const onInputChange = (event: CustomEvent) => {
@@ -20,9 +22,6 @@ const CurrenciesCard: React.FC = ()  => {
 
         if(selectedCurrency !== null)
         {
-
-            console.log(selectedCurrency);
-
             outputCurrency.current!.value = value / selectedCurrency.rate * selectedCurrency.unit;
         }
 
