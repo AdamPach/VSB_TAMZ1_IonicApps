@@ -32,16 +32,25 @@ const GraphView: React.FC<GraphViewProps> = ({selectedCurrency}) => {
 
                 points.forEach((point, index) => {
                     const x = 10 + (index * ((canvasWidth - 20) / (points.length - 1)));
-                    // const y = canvasHeight - point * 10;
-
                     const y = 300 - ((point - pointMin)*(canvasHeight / (pointMax - pointMin)));
+
+                    if(index > 0)
+                    {
+                        ctx.lineTo(x, y);
+                        ctx.stroke();
+                        ctx.closePath();
+                    }
 
                     ctx.beginPath();
 
                     ctx.arc(x, y, 5, 0, 2 * Math.PI);
 
-                    ctx.fill()
+                    ctx.fillText(point.toString(), x - 10, y - 10);
 
+                    ctx.fill();
+                    ctx.stroke();
+
+                    ctx.moveTo(x, y);
                 });
             }
         }
