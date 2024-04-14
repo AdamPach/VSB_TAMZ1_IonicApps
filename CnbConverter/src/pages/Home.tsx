@@ -3,6 +3,7 @@ import './Home.css';
 import CurrenciesCard from "../components/CurrenciesCard";
 import Settings from "../components/Settings";
 import SelectCurrencyCard from "../components/SelectCurrencyCard";
+import GraphCard from "../components/GraphCard";
 
 const Home: React.FC = () => {
   return (
@@ -15,7 +16,8 @@ const Home: React.FC = () => {
       <IonContent fullscreen>
           <CurrenciesCard/>
           <SelectCurrencyCard/>
-        <Settings/>
+          <GraphCard/>
+          <Settings/>
       </IonContent>
     </IonPage>
   );
